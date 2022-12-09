@@ -1,5 +1,5 @@
 {
-  "name": "http-request",
+  "name": "@gurming/http-request",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -13,6 +13,10 @@
     "prepare": "husky install"
   },
   "author": "gurming",
+  "repository": {
+    "url": "https://github.com/gamgmg/http-request"
+  },
+  "homepage": "https://github.com/gamgmg/http-request",
   "license": "ISC",
   "peerDependencies": {
     "axios": "^1.2.1",
