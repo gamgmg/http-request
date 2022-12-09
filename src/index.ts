@@ -2,8 +2,8 @@ import axios, { AxiosInstance } from 'axios'
 import { IAxiosRequestConfig, IAxiosResponse } from './utils/types'
 import { handleRequest } from './utils/helpers'
 import httpStatus from './utils/http-status'
-
 export { httpStatus }
+import { merge } from 'lodash'
 
 export class HttpRequest {
   private static _instance: HttpRequest
@@ -28,7 +28,12 @@ export class HttpRequest {
   setDefaults(config: IAxiosRequestConfig) {
     if (HttpRequest.isSetDefaults) return
     HttpRequest.isSetDefaults = true
-    Object.assign(HttpRequest.$axios.defaults, config)
+    HttpRequest.$axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    HttpRequest.$axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
+    HttpRequest.$axios.defaults.headers.patch['Content-Type'] = 'application/x-www-form-urlencoded'
+    HttpRequest.$axios.defaults.headers.delete['Content-Type'] = 'application/x-www-form-urlencoded'
+
+    merge(HttpRequest.$axios.defaults, config)
   }
 
   setInterceptorsRequest(

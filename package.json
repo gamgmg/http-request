@@ -1,7 +1,7 @@
 {
   "name": "@gurming/http-request",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "对axios进行二次封装",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "type": "module",
@@ -46,5 +46,9 @@
     "*.{js,ts,json}": [
       "prettier --write"
     ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

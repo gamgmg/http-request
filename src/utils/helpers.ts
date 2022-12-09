@@ -37,9 +37,6 @@ export function handleRequest(
         method,
         url,
         params: params?.params,
-        headers: {
-          'Content-Type': 'application/json',
-        },
         customParams: { errAlert: true, successAlert: false },
       }
       if (method === 'get') return $axios.request(merge(requestOptions, config))
@@ -60,20 +57,15 @@ export function handleRequest(
             data: params?.data,
             // 对data进行格式转换
             transformRequest: [
-              function (data = {}) {
+              function (data = {}, headers) {
                 // 排除空值key
                 data = filterParams(data, [0, ''])
-                if (config?.json) {
+                if (headers['Content-Type'] === 'application/json') {
                   return JSON.stringify(data)
                 }
                 return qs.stringify(data)
               },
             ],
-            headers: {
-              'Content-Type': config?.json
-                ? 'application/json'
-                : 'application/x-www-form-urlencoded',
-            },
             customParams: { errAlert: true, successAlert: true },
           },
           config,
